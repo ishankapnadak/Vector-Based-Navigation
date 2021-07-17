@@ -8,3 +8,11 @@ The following losses were observed:
 **Norm Loss**:
 
 ![Norm Loss](https://github.com/ishankapnadak/Vector-Based-Navigation/blob/main/New%20Supervised/double_layered_268_sincos/norm_loss.jpg)
+
+**Sine Loss**:
+
+![Sine Loss](https://github.com/ishankapnadak/Vector-Based-Navigation/blob/main/New%20Supervised/double_layered_268_sincos/sine_loss.jpg)
+
+**Cosine Loss**:
+
+![Cosine Loss](https://github.com/ishankapnadak/Vector-Based-Navigation/blob/main/New%20Supervised/double_layered_268_sincos/cosine_loss.jpg)
