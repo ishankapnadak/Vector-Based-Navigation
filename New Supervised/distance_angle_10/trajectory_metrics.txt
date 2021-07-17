@@ -1,0 +1,3 @@
+R2 Score for Sine: -61.014225741838544
+R2 Score for Cosine: -0.12037900064786777
+R2 Score for Norm: 0.6569840783159764
