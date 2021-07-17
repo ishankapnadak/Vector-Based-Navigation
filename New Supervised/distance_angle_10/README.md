@@ -13,7 +13,7 @@ Tried training the network on distance as well as sine and cosine of the head di
 
 ![Cosine Loss](https://github.com/ishankapnadak/Vector-Based-Navigation/blob/main/New%20Supervised/distance_angle_10/losses/cosine_loss.jpg)
 
-The R<sup>2<\sup> coefficient for norm, sine, and cosine are as follows: 
+The R<sup>2</sup> coefficient for norm, sine, and cosine are as follows: 
 1. 0.657
 2. -61.014
 3. -0.12
