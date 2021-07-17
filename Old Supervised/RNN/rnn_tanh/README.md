@@ -5,3 +5,7 @@ An implementation of the original paper using an RNN with tanh activation in the
 The weight matrix of the RNN was observed to be a diagonal matrix:
 
 ![Weight Matrix](https://github.com/ishankapnadak/Vector-Based-Navigation/blob/main/Old%20Supervised/RNN/rnn_tanh/weight_matrix.jpg)
+
+Predicted Trajectories:
+
+![Weight Matrix](https://github.com/ishankapnadak/Vector-Based-Navigation/blob/main/Old%20Supervised/RNN/rnn_tanh/predictedTrajectory.png)
