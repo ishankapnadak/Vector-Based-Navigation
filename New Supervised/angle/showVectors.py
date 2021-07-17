@@ -15,7 +15,7 @@ def showVectors(agent, dataGenerator, num_traj, num_steps, llu, slu, tlu, bins):
     #activityMap=np.zeros((llu, bins, bins))
     #counter = 0
 
-    data = pd.DataFrame(columns=["Sine True", "Sine Predicted", "Cosine True", "Cosine Predicted", "Norm True", "Norm Predicted"])
+    data = pd.DataFrame(columns=["Sine True", "Sine Predicted", "Cosine True", "Cosine Predicted"])
 
     X=np.zeros((num_traj,num_steps,3))
     positions=np.zeros((num_traj,num_steps,2))
@@ -63,10 +63,10 @@ def showVectors(agent, dataGenerator, num_traj, num_steps, llu, slu, tlu, bins):
                     agent.keepProb : 1
                     }
         
-        norms, sines, cosines = agent.sess.run([agent.OutputNorm, agent.OutputSine, agent.OutputCosine], feed_dict=feed_dict)
+        sines, cosines = agent.sess.run([agent.OutputSine, agent.OutputCosine], feed_dict=feed_dict)
         #print(norms[0])
         #print(norms[:,0])
-        norms = norms.reshape((num_steps))
+        #norms = norms.reshape((num_steps))
         sines = sines.reshape((num_steps))
         cosines = cosines.reshape((num_steps))
 
@@ -74,15 +74,15 @@ def showVectors(agent, dataGenerator, num_traj, num_steps, llu, slu, tlu, bins):
 
         for i in range(0, num_steps):
             current_X, current_Y = pos[i]
-            norm = norms[i]
+            #norm = norms[i]
             sine = sines[i]
             cosine = cosines[i]
             index = i
             #print(sine, cosine)
             ax.plot(current_X, current_Y, 'o')
             phase_true = np.pi + np.arctan2((current_Y - home_Y), (current_X - home_X))
-            norm_true = round(np.linalg.norm((home_location - pos[i])),3)
-            norm_pred = round(norm,3)
+            #norm_true = round(np.linalg.norm((home_location - pos[i])),3)
+            #norm_pred = round(norm,3)
             #print(np.sin(phase_true), np.cos(phase_true))
             sin_true = round(np.sin(phase_true),3)
             sin_pred = round(sine,3)
@@ -93,10 +93,8 @@ def showVectors(agent, dataGenerator, num_traj, num_steps, llu, slu, tlu, bins):
             data.at[index, "Sine True"] = sin_true
             data.at[index, "Sine Predicted"] = sin_pred
             data.at[index, "Cosine True"] = cos_true
-            data.at[index, "Cosine Predicted"] = cos_pred
-            data.at[index, "Norm True"] = norm_true
-            data.at[index, "Norm Predicted"] = norm_pred
 
+            data.at[index, "Cosine Predicted"] = cos_pred
             #X_direct = norm * cosine
             #Y_direct = norm * sine
 
@@ -109,16 +107,16 @@ def showVectors(agent, dataGenerator, num_traj, num_steps, llu, slu, tlu, bins):
     sin_pred = data["Sine Predicted"].to_list()
     cos_true = data["Cosine True"].to_list()
     cos_pred = data["Cosine Predicted"].to_list()
-    norm_true = data["Norm True"].to_list()
-    norm_pred = data["Norm Predicted"].to_list()
+    #norm_true = data["Norm True"].to_list()
+    #norm_pred = data["Norm Predicted"].to_list()
 
     r2_sine = r2_score(sin_true, sin_pred)
     r2_cosine = r2_score(cos_true, cos_pred)
-    r2_norm = r2_score(norm_true, norm_pred)
+    #r2_norm = r2_score(norm_true, norm_pred)
     sine_str = "R2 Score for Sine: " + str(r2_sine)
     cosine_str = "R2 Score for Cosine: " + str(r2_cosine)
-    norm_str = "R2 Score for Norm: " + str(r2_norm)
+    #norm_str = "R2 Score for Norm: " + str(r2_norm)
     #print(sine_str)
     file = open("trajectory_metrics.txt", "w")
-    file.write('{}\n{}\n{}\n'.format(sine_str,cosine_str,norm_str))
+    file.write('{}\n{}\n'.format(sine_str,cosine_str))
     file.close()
