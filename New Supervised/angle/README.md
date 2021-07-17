@@ -12,5 +12,5 @@ Trained only on the sine and cosine of head direction angle. The following loss 
 
 The R<sup>2</sup> coefficient for sine and cosine respectively was found to be:
 
-1. -0.427
-2. -87.016
+1. -198.658
+2. -5.621
