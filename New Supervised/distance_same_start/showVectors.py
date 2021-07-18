@@ -53,6 +53,7 @@ def showVectors(agent, dataGenerator, num_traj, num_steps, llu, slu, tlu, bins):
         ax.set_ylim(0,2.2)
         ax.grid(True)
         ax.plot(home_X, home_Y, 'o')
+        
 
         xBatch=X[startB:endB]
 
@@ -81,10 +82,24 @@ def showVectors(agent, dataGenerator, num_traj, num_steps, llu, slu, tlu, bins):
         	#ax.quiver(current_X, current_Y, X_direct, Y_direct, width=0.005, angles='xy', scale_units='xy', scale=1, color='g')
 
     fig.savefig('trajectory.jpg')
+    plt.clf()
     data.to_csv('trajectory_data.csv')
 
     norm_true = data["Norm True"].to_list()
     norm_pred = data["Norm Predicted"].to_list()
+    x_coords = np.arange(0,400,1)
+
+    fig = plt.figure(figsize=(10,10))
+    ax = fig.add_subplot(111)
+    ax.set_title("Predicted v/s True Norm")
+    ax.grid(True)
+    ax.plot(x_coords, norm_true, 'b', label="True Norm")
+    ax.plot(x_coords, norm_pred, 'r', label="Predicted Norm")
+    ax.legend()
+    
+    fig.savefig('trajectory_predictions.jpg')
+    plt.clf()
+
 
     r2 = r2_score(norm_true, norm_pred)
     r2_str = "R2 Score for Norm is: " + str(r2)
