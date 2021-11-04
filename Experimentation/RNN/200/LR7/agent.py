@@ -111,6 +111,8 @@ class Network():
             #Compute the predicted Place Cells Distribution
             self.OutputNorm=tf.matmul(self.nonlinear3, self.W4) + self.B4
 
+            
+
     def buildTraining(self):
         #Fed the Ground Truth Place Cells Distribution and Head Direction Cells Distribution
         self.LabelNorm = tf.compat.v1.placeholder(tf.float32, shape=[None, self.n_steps], name="Label_Norm")
